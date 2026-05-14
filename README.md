@@ -33,7 +33,7 @@ Every time Cursor attempts to execute a shell command, the hook:
 
 The hook uses a **"fail open"** approach: if 1Password is not installed, the database is unavailable, or `sqlite3` is missing, the hook allows execution to proceed. This prevents blocking development in environments where 1Password isn't set up.
 
-> **Note:** 1Password Environments local `.env` mounts only apply on **macOS and Linux**. **`hooks.json`** invokes **`./scripts/validate-mounted-env-files`** with no extension. On **macOS / Linux**, that runs the **Bash** script. On **Windows** the shell looks for a real file by trying suffixes from **`PATHEXT`** until one matches on disk. A typical default order is **`.COM` → `.EXE` → `.BAT` → `.CMD`** (see `echo %PATHEXT%` in **cmd**). Here that yields **`validate-mounted-env-files.cmd`**, which returns **`allow`** and skips validation so agent shells are not blocked.
+> **Note:** 1Password Environments local `.env` mounts only apply on **macOS and Linux**. **`hooks.json`** invokes **`./scripts/validate-mounted-env-files`** with no extension. On **macOS / Linux**, that runs the **Bash** script. On **Windows** the shell looks for a real file by trying suffixes from **`PATHEXT`** until one matches on disk. That yields **`validate-mounted-env-files.cmd`**, which returns **`allow`** and skips validation so agent shells are not blocked.
 
 For full details on how this hook was originally built and tested, see the [1Password Agent Hooks repository](https://github.com/1Password/agent-hooks).
 

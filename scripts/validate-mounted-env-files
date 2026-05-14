@@ -2,27 +2,6 @@
 
 set -euo pipefail
 
-# Windows (Git Bash / MSYS / native): same fail-open JSON as validate-mounted-env-files.cmd.
-WIN_SKIP_MSG='1Password Environments are not currently supported on Windows. Environment validation was skipped.'
-_esc() { printf '%s' "$1" | sed 's/\\/\\\\/g;s/"/\\"/g'; }
-WIN_SKIP_JSON=$(printf '%s' "{\"permission\":\"allow\",\"agent_message\":\"$(_esc "$WIN_SKIP_MSG")\",\"user_message\":\"$(_esc "$WIN_SKIP_MSG")\"}")
-
-case "$(uname -s 2>/dev/null)" in
-  MINGW* | MSYS* | CYGWIN*)
-    cat >/dev/null 2>&1 || true
-    printf '%s\n' "$WIN_SKIP_JSON"
-    exit 0
-    ;;
-esac
-
-if [[ -n "${WINDIR:-}" || "${OS:-}" == "Windows_NT" ]]; then
-  cat >/dev/null 2>&1 || true
-  printf '%s\n' "$WIN_SKIP_JSON"
-  exit 0
-fi
-
-unset -f _esc 2>/dev/null || true
-
 # ============================================================================
 # TABLE OF CONTENTS
 # ============================================================================
