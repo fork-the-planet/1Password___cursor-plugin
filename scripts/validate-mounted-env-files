@@ -2,6 +2,22 @@
 
 set -euo pipefail
 
+# On Windows, if Bash runs this file (Git Bash, MSYS, Cygwin, etc.), return allow and skip validation
+# Cursor on Windows normally runs the .cmd file instead; this is for when Bash runs it.
+WIN_SKIP_MSG='1Password Environments are not currently supported on Windows. Environment validation was skipped.'
+_esc() { printf '%s' "$1" | sed 's/\\/\\\\/g;s/"/\\"/g'; }
+WIN_SKIP_JSON=$(printf '%s' "{\"permission\":\"allow\",\"agent_message\":\"$(_esc "$WIN_SKIP_MSG")\",\"user_message\":\"$(_esc "$WIN_SKIP_MSG")\"}")
+
+case "$(uname -s 2>/dev/null)" in
+  MINGW* | MSYS* | CYGWIN*)
+    cat >/dev/null 2>&1 || true
+    printf '%s\n' "$WIN_SKIP_JSON"
+    exit 0
+    ;;
+esac
+
+unset -f _esc 2>/dev/null || true
+
 # ============================================================================
 # TABLE OF CONTENTS
 # ============================================================================
