@@ -575,7 +575,7 @@ parse_toml_mount_paths() {
 # MAIN EXECUTION LOGIC
 # ============================================================================
 
-# Unsupported platforms: return allow JSONand exit.
+# Unsupported platforms: return allow JSON and exit.
 case "$(uname_platform)" in
   windows_bash | freebsd)
     UNSUPPORTED_PLATFORM_SKIP_MSG='1Password Environments local .env validation is only supported on macOS and Linux. Validation was skipped.'
