@@ -1,0 +1,16 @@
+{
+  "name": "mcp-plugin-test-marketplace",
+  "owner": {
+    "name": "1Password"
+  },
+  "metadata": {
+    "description": "Internal test marketplace for in-development 1Password IDE plugins (Cursor and future targets)."
+  },
+  "plugins": [
+    {
+      "name": "1password",
+      "source": "cursor-plugin",
+      "description": "1Password plugin for Cursor — hooks, bundled agent skill, and MCP config for Developer Environments and local .env mounts."
+    }
+  ]
+}

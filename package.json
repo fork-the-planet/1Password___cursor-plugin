@@ -1,0 +1,8 @@
+{
+  "name": "mcp-plugin-test-marketplace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-marketplace.mjs"
+  }
+}

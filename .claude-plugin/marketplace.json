@@ -1,0 +1,10 @@
+{
+  "name": "mcp-plugin-test-marketplace",
+  "owner": {
+    "name": "1Password"
+  },
+  "metadata": {
+    "description": "Internal test marketplace for in-development 1Password IDE plugins (Claude Code and future targets)."
+  },
+  "plugins": []
+}

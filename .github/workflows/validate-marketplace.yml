@@ -1,0 +1,31 @@
+name: Validate marketplace
+
+on:
+  pull_request:
+    paths:
+      - ".cursor-plugin/**"
+      - ".claude-plugin/**"
+      - "**/plugin.json"
+      - "**/mcp.json"
+      - "cursor-plugin/**"
+      - "plugins/**"
+      - "schemas/**"
+      - "scripts/**"
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install validation dependencies
+        run: npm install --no-save ajv ajv-formats
+
+      - name: Validate marketplace manifests and plugins
+        run: npm run validate
