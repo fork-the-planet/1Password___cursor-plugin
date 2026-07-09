@@ -1,9 +1,0 @@
-.DS_Store
-node_modules/
-.npm-cache/
-
-# Nested clone metadata — remove locally if present; never commit
-cursor-plugin/.git/
-
-# Local IDE config
-.cursor/hooks.json
